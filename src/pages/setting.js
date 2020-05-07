@@ -263,6 +263,29 @@
 
   }
 
+  function initSettingResetAndBackup(config) {
+    initCheckboxInput(config,
+      'backup-setting-page-config',
+      'backupSettingPageConfig'
+    );
+
+    initCheckboxInput(config,
+      'backup-history-page-config',
+      'backupHistoryPageConfig'
+    );
+
+    initCheckboxInput(config,
+      'backup-assistant-data',
+      'backupAssistantData'
+    );
+
+    initCheckboxInput(config,
+      'backup-selection-data',
+      'backupSelectionData'
+    );
+
+  }
+
   // ======================================
   // init form input END
   // ======================================
@@ -552,6 +575,53 @@
     Notify.success(I18N.t('setting.refresh-now-msg-sent.label'));
   }
 
+  function resetToDefault(e) {
+    const confirmed = window.confirm(I18N.t('setting.reset-to-default-warning.label'));
+    if (confirmed) {
+      // reset config
+      MxWcConfig.reset();
+      resetAssistant();
+      // reset selection's backend
+      ExtMsg.sendToBackground({type: 'reset.selection'});
+      Notify.success(I18N.t('setting.reset-to-default-success.label'));
+    }
+  }
+
+  function restoreFromFile(e) {
+    const input = T.findElem('restore-file-picker');
+    input.value = '';
+    input.click();
+  }
+
+  function backupToFile(e) {
+    ExtMsg.sendToBackground({type: 'backup-to-file'})
+  }
+
+  function handleRestoreFilePicker(e) {
+    const input = e.target;
+    const file = input.files[0];
+    if ( file === undefined || file.name === '' ) { return; }
+    if ( file.type.indexOf('json') == -1 ) { return; }
+    const filename = file.name;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const text = ev.target.result
+      try {
+        const json = JSON.parse(text);
+        MxWcStorage.restore(json.data).then(() => {
+          return ExtMsg.sendToBackground({
+            type: 'restart.storage-relative-services'
+          });
+        }).then(() => {
+          Notify.success(I18N.t('setting.restore-from-file-success.label'));
+        });
+      } catch(e) {
+        Notify.error(e.message);
+      }
+    }
+    reader.readAsText(file);
+  }
+
   function renderSection(id) {
     const container = T.queryElem('.content');
     const template = getSectionTemplate(id);
@@ -584,6 +654,9 @@
       case 'setting-advanced':
         render = renderSectionAdvanced;
         break;
+      case 'setting-reset-and-backup':
+        render = renderSectionResetAndBackup;
+        break;
       default:
         throw new Error("Unknown section " + id)
     }
@@ -614,6 +687,18 @@
     });
   }
 
+  function renderSectionResetAndBackup(id, container, template) {
+    const html = template;
+    T.setHtml(container, html);
+    MxWcConfig.load().then((config) => {
+      initSettingResetAndBackup(config);
+    });
+    bindClickListener('backup-to-file', backupToFile);
+    bindClickListener('restore-from-file', restoreFromFile);
+    bindClickListener('reset-to-default', resetToDefault);
+    bindChangeListener('restore-file-picker', handleRestoreFilePicker);
+  }
+
   function renderSectionStorage(id, container, template) {
     const html = template;
     T.setHtml(container, html);
@@ -622,35 +707,41 @@
     });
   }
 
-  function renderSectionAssistant(id, container, template) {
-    const examplePlan = `  {
-    "name" : "A example plan",
-    "pattern" : "https://example.org/posts/**/*.html",
-    "pick" : ".post",
-    "hide" : [".post-btns", "div.comments"]
-  }`;
-    const defaultIndexUrl = MxWcLink.get('assistant.subscription.default.index');
+  // ======================================
+  // Assistant begin
+  // ======================================
+  const AssistantDefault = {
+    examplePlanText: "[\n  {"
+      + '\n    "name" : "A example plan",'
+      + '\n    "pattern" : "https://example.org/posts/**/*.html",'
+      + '\n    "pick" : ".post",'
+      + '\n    "hide" : [".post-btns", "div.comments"]'
+      + '\n  }\n]',
+    defaultIndexUrl: MxWcLink.get('assistant.subscription.default.index'),
+  }
 
+  function renderSectionAssistant(id, container, template) {
     const html = T.renderTemplate(template, {});
     T.setHtml(container, html);
     renderSubscriptions();
-    MxWcStorage.get('assistant.custom-plan.text', `[\n${examplePlan}\n]`).then((value) => {
+    MxWcStorage.get('assistant.custom-plan.text', AssistantDefault.examplePlanText).then((value) => {
       T.setElemValue('#custom-plans', value);
     });
     MxWcStorage.get('assistant.public-plan.subscription-text').then((value) => {
-      const subscription = (value || defaultIndexUrl);
+      const subscription = (value || AssistantDefault.defaultIndexUrl);
       T.setElemValue('#plan-subscription', subscription);
       if (!value) {
-        MxWcStorage.set('assistant.public-plan.subscription-urls', [defaultIndexUrl]);
+        MxWcStorage.set('assistant.public-plan.subscription-urls', [AssistantDefault.defaultIndexUrl]);
       }
     });
     MxWcConfig.load().then((config) => {
       initSettingAssistant(config);
     });
-    bindButtonListener('update-public-plan-now', updatePublicPlans);
-    bindButtonListener('save-plan-subscription', savePlanSubscription);
-    bindButtonListener('save-custom-plan', saveCustomPlan);
+    bindClickListener('update-public-plan-now', updatePublicPlans);
+    bindClickListener('save-plan-subscription', savePlanSubscription);
+    bindClickListener('save-custom-plan', saveCustomPlan);
   }
+
 
   function renderSubscriptions() {
     MxWcStorage.get('assistant.public-plan.subscriptions', [])
@@ -762,6 +853,34 @@
     }
   }
 
+  function resetAssistant() {
+    resetCustomPlan();
+    resetPlublicPlan();
+  }
+
+  function resetCustomPlan() {
+    ExtMsg.sendToBackground({
+      type: 'save.custom-plan',
+      body: {planText: AssistantDefault.examplePlanText}
+    });
+  }
+
+  function resetPlublicPlan() {
+    Promise.all([
+      MxWcStorage.remove('assistant.public-plan.subscription-text'),
+      MxWcStorage.remove('assistant.public-plan.subscription-urls'),
+    ]).then(() => {
+      ExtMsg.sendToBackground({
+        type: 'update.public-plan',
+        body: {urls: []}
+      });
+    });
+  }
+
+  // ======================================
+  // Assistant end
+  // ======================================
+
   function renderSectionHandlerBrowser(id, container, template) {
     const html = template;
     T.setHtml(container, html);
@@ -848,7 +967,7 @@
       MxWcConfig.load().then((config) => {
         initOfflinePage(config)
       });
-      bindButtonListener('generate-clipping-js-now', generateClippingJsNow);
+      bindClickListener('generate-clipping-js-now', generateClippingJsNow);
     });
   }
 
@@ -862,13 +981,18 @@
       MxWcConfig.load().then((config) => {
         initRefreshHistory(config)
       });
-      bindButtonListener('refresh-history-now', refreshHistoryNow);
+      bindClickListener('refresh-history-now', refreshHistoryNow);
     });
   }
 
-  function bindButtonListener(id, handler){
-    const btn = T.findElem(id);
-    T.bindOnce(btn, 'click', handler);
+  function bindClickListener(id, handler) {
+    const elem = T.findElem(id);
+    T.bindOnce(elem, 'click', handler);
+  }
+
+  function bindChangeListener(id, handler) {
+    const elem = T.findElem(id);
+    T.bindOnce(elem, 'change', handler);
   }
 
 

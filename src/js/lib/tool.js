@@ -501,6 +501,10 @@
       return `${s.year}-${s.month}-${s.day} ${s.hour}:${s.minute}:${s.second}`;
     }
 
+    tObj.date = function() {
+      return `${s.year}-${s.month}-${s.day}`;
+    }
+
     tObj.time = function() {
       return `${s.hour}:${s.minute}:${s.second}`;
     }

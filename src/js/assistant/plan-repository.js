@@ -209,5 +209,15 @@
     });
   }
 
-  const PlanRepository = { init, get, updatePublicPlans, updateCustomPlans }
+
+  // set state to default
+  function restart() {
+    state.cachedPlans = [];
+    state.customPlans = null;
+    state.publicPlanPointers = [];
+    state.publicPlanDict = {};
+    initPublicPlanPointers();
+  }
+
+  const PlanRepository = { init, restart, get, updatePublicPlans, updateCustomPlans }
   export default PlanRepository;

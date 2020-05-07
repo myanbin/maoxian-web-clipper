@@ -41,6 +41,9 @@
         case 'save.selection':
           SelectionBackend.save(message.body).then(resolve);
           break;
+        case 'reset.selection':
+          SelectionBackend.reset().then(resolve);
+          break;
         case 'get.mimeTypeDict' : resolve(WebRequest.getMimeTypeDict())   ; break;
         case 'init.downloadFolder': initDownloadFolder()                  ; resolve() ; break ;
         case 'save.category'    : saveCategory(message.body)              ; resolve() ; break ;
@@ -102,6 +105,14 @@
         case 'create-tab':
           ExtApi.createTab(message.body.link).then(resolve);
           break;
+        case 'backup-to-file':
+          backupToFile();
+          break;
+        case 'restart.storage-relative-services':
+          SelectionBackend.restart();
+          PlanRepository.restart();
+          resolve();
+          break;
         default:
           throw new Error("Unknown message" + message.type);
           break;
@@ -157,6 +168,68 @@
       filename: ['mx-wc-history', t, 'json'].join('.'),
       url: url
     })
+  }
+
+  function backupToFile() {
+
+    MxWcConfig.load().then((config) => {
+      const filters = [];
+      const yesOrNo = (v) => {
+        return v === true ? 'YES' : 'NO';
+      }
+
+      filters.push((key) => {
+        if (key === 'config') {
+          return yesOrNo(config.backupSettingPageConfig);
+        }
+        return 'NEXT';
+      });
+
+      filters.push((key) => {
+        if ([
+          'categories',
+          'tags',
+          'clips',
+          'downloadFolder',
+          'lastClippingResult',
+          'firstRunning',
+        ].indexOf(key) > -1) {
+          return 'NO';
+        }
+        return 'NEXT';
+      });
+
+      const prefixFilter = function(keyPrefix, configName) {
+        return function(key) {
+          if (key.startsWith(keyPrefix)) {
+            return yesOrNo(config[configName]);
+          }
+          return 'NEXT';
+        }
+      }
+
+      filters.push(prefixFilter('history.page.cache', 'backupHistoryPageConfig'));
+      filters.push(prefixFilter('assistant', 'backupAssistantData'));
+      filters.push(prefixFilter('selectionStore', 'backupSelectionData'));
+      filters.push((key) => { return 'YES' }) // default filter
+
+      MxWcStorage.backup(...filters).then((data) => {
+        const now = T.currentTime();
+        const s = now.str
+        const t = [s.hour, s.minute, s.second].join('.');
+        const content = {data: data, backupAt: now.toString()}
+        const arr = [JSON.stringify(content)];
+        const blob = new Blob(arr, {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const filename = `mx-wc-backup_${now.date()}_${t}.json`;
+        ExtApi.download({
+          saveAs: true,
+          filename: filename,
+          url: url
+        });
+      });
+
+    });
   }
 
   /*

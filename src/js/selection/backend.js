@@ -17,6 +17,27 @@
     return Store.get(path)
   }
 
+  // all data storage in MxWcStorage will be removed
+  async function reset() {
+    const data = MxWcStorage.getAll();
+    const keys = [];
+    for (let k in data) {
+      if (k.startsWith('selectionStore')) {
+        keys.push(k);
+      }
+    }
+    await MxWcStorage.remove(keys)
+    restart();
+  }
+
+  // just clear StoreDict
+  // force it to refetch from Storage
+  function restart() {
+    for (let key in StoreDict) {
+      delete StoreDict[key];
+    }
+  }
+
   async function getStore(host) {
     let Store = StoreDict[host];
     if (!Store) {
@@ -32,13 +53,16 @@
     await MxWcStorage.set(getKey(host), treeHash);
   }
 
+
   function getKey(host) {
     return ['selectionStore', host].join('.');
   }
 
   const SelectionBackend = {
     save: save,
-    query: query
+    query: query,
+    reset: reset,
+    restart: restart,
   }
 
   export default SelectionBackend;
