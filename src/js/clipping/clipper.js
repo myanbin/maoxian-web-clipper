@@ -79,6 +79,7 @@ function getReadyToClip(formInputs, config, {domain, pageUrl}) {
     category   : userInput.category,
     tags       : userInput.tags.concat(appendTags),
     created_at : tObj.toString(),
+    handler    : config.clippingHandler
   }
 
   return {userInput, info, storageInfo, storageConfig};
