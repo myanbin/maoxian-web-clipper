@@ -253,7 +253,6 @@ async function captureNode(node, params) {
       break;
     case 'AUDIO':
     case 'VIDEO':
-      debugger;
       opts = {saveFormat, baseUrl, storageInfo, clipId, mimeTypeDict};
       r = await CapturerVideo.capture(node, opts);
       break;
