@@ -13,6 +13,7 @@ import CapturerImg           from '../capturer/img.js';
 import CapturerCss           from '../capturer/css.js';
 import CapturerStyle         from '../capturer/style.js';
 import CapturerLink          from '../capturer/link.js';
+import CapturerVideo         from '../capturer/video.js';
 import CapturerIframe        from '../capturer/iframe.js';
 import CapturerCustomElement from '../capturer/custom-element.js';
 import StyleHelper           from './style-helper.js';
@@ -251,7 +252,11 @@ async function captureNode(node, params) {
       r = CaptureTool.captureBackgroundAttr(node, opts);
       break;
     case 'AUDIO':
-    case 'VEDIO':
+    case 'VIDEO':
+      debugger;
+      opts = {saveFormat, baseUrl, storageInfo, clipId, mimeTypeDict};
+      r = await CapturerVideo.capture(node, opts);
+      break;
     case 'EMBED':
     case 'OBJECT':
     case 'APPLET':

@@ -50,6 +50,10 @@ function createImageTask(filename, url, clipId) {
   return createUrlTask(filename, url, clipId, 'imageFileTask');
 }
 
+function createVideoTask(filename, url, clipId) {
+  return createUrlTask(filename, url, clipId, 'videoFileTask');
+}
+
 function createUrlTask(filename, url, clipId, taskType = 'assetFileTask', headers={}) {
   return {
     taskType: taskType,
@@ -137,6 +141,7 @@ const Task = {
   createTitleTask: createTitleTask,
   createInfoTask: createInfoTask,
   createImageTask: createImageTask,
+  createVideoTask: createVideoTask,
   createUrlTask: createUrlTask,
   rmReduplicate: rmReduplicate,
   changeUrlTask: changeUrlTask,
