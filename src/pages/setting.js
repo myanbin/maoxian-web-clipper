@@ -143,6 +143,14 @@ function initSettingHandlerWizNotePlus(config) {
   );
 }
 
+// section: handler-XinhauNote
+function initSettingHandlerXinhuaNote(config) {
+  initCheckboxInput(config,
+    "handler-xinhua-note-enabled",
+    "handlerXinhuaNoteEnabled",
+  );
+}
+
 function initSettingSaveFormat(config){
   initOptionsInput(config,
     'save-format',
@@ -575,6 +583,9 @@ function renderSection(id) {
     case 'setting-handler-wiz-note-plus':
       render = renderSectionHandlerWizNotePlus;
       break;
+    case 'setting-handler-xinhua-note':
+      render = renderSectionHandlerXinhuaNote;
+      break;
     case 'setting-offline-page':
       render = renderSectionOfflinePage;
       break;
@@ -838,6 +849,14 @@ async function renderSectionHandlerWizNotePlus(id, container, template) {
     msg = msg.replace('$MESSAGE', info.message);
     renderNoticeBox(section, 'danger', msg);
   }
+}
+
+function renderSectionHandlerXinhuaNote(id, container, template) {
+  const html = template;
+  T.setHtml(container, html);
+  MxWcConfig.load().then((config) => {
+    initSettingHandlerXinhuaNote(config);
+  });
 }
 
 function renderSectionOfflinePage(id, container, template) {

@@ -115,6 +115,7 @@
     "setting.title.handler-browser": "Browser",
     "setting.title.handler-native-app": "Native App",
     "setting.title.handler-wiz-note-plus" :"WizNotePlus",
+    "setting.title.handler-xinhua-note": "Xinhua Note",
 
     "setting.title.save-format": "Save Format",
     "setting.title.control": "Control",
@@ -199,7 +200,10 @@
     "handler.wiz-note-plus.feature.a": "Save clipping file to WizNotePlus database.",
     "handler.wiz-note-plus.warning": "<strong> Warning! </strong><br /> If you enable this handler, you must <a href='https://github.com/altairwei/WizNotePlus/releases' target='_blank'>install WizNotePlus application</a> first.",
 
-
+    "handler.xinhua-note.name": "Xinhua Note",
+    "handler.xinhua-note.intro": "Xinhua Note",
+    "handler.xinhua-note.feature.a": "Save clipping file to Xinhua Note database.",
+    "handler.xinhua-note.feature.b": "Xinhua Note",
 
     "setting.option.request-referrer-policy.origin-when-cross-origin": "originWhenCrossOrigin: full path (origin + path) when request to same origins, origin (protocol + host + port) only when request to other origins.",
     "setting.option.request-referrer-policy.origin": "origin: origin only (protocol + host + port).",
@@ -211,6 +215,7 @@
     "setting.notice.info.storage.browser": "Use browser to download clipping result.<br />",
     "setting.notice.info.storage.native-app": "Use a native application to save clipping result ( If you already install some download manage extension, your can choose this option to avoid conflic between extension), You need to <a href='go.page:native-app' target='_blank'>install a native application</a>.",
     "setting.notice.info.storage.wiz-note-plus": "Use WizNotePlus to save clipping result.<br />",
+    "setting.notice.info.storage.xinhua-note": "Use Xinahua Note to save clipping result<br />",
 
     "setting.notice.info.offline-page.browser": "$BLANK",
     "setting.notice.info.offline-page.native-app": "$BLANK",
@@ -219,6 +224,7 @@
     "setting.notice.warning.storage.browser": "$BLANK",
     "setting.notice.warning.storage.native-app": "$BLANK",
     "setting.notice.warning.storage.wiz-note-plus": "$BLANK",
+    "setting.notice.warning.storage.xinhua-note": "$BLANK",
     "setting.notice.warning.offline-page.browser": "$BLANK",
     "setting.notice.warning.offline-page.native-app": "$BLANK",
     "setting.notice.warning.refresh-history.native-app": "$BLANK",
