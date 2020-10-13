@@ -162,6 +162,11 @@ function getDefault(){
     //=====================================
     assistantEnabled: false,
     autoUpdatePublicPlan: false,
+
+    //=====================================
+    // Xinhua Note
+    //=====================================
+    accessToken: 'PUT_YOUR_ACCESS_TOKEN_HERE',
   }
 }
 

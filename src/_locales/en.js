@@ -1,6 +1,6 @@
-  "use strict";
+"use strict";
 
-  const LocaleEn = {
+const LocaleEn = {
   "values": {
     "name": "MaoXian web clipper",
 
@@ -115,7 +115,10 @@
     "setting.title.handler-browser": "Browser",
     "setting.title.handler-native-app": "Native App",
     "setting.title.handler-wiz-note-plus" :"WizNotePlus",
-    "setting.title.handler-xinhua-note": "Xinhua Note",
+      "setting.title.handler-xinhua-note": "Xinhua Note",
+    
+    "setting.title.xinhua-note": "Xinhua Note",
+    "setting.title.access-token": "Access Token",
 
     "setting.title.save-format": "Save Format",
     "setting.title.control": "Control",
@@ -268,7 +271,8 @@
     "setting.notice.edit-subscription": "Using input field below to edit your subscriptions. Using line break to separate subscription. Any line begin with <code>#</code> will be treated as comment. <br /><br /><strong>Notice:</strong><br />1. The default subscription url that provided by extension hasn't download yet, If you are first time to using this function, click \"Update Now\" button to download it. <br />2. Click \"Save\" button won't trigger any download. So after your subscriptions saved, you should click \"Update Now\" or enable \"auto update\" to download it<br /><br />See <a href='go.page:public-subscriptions' target='_blank'>this page</a> for more subscriptions.",
     "setting.notice.custom-plan-intro": 'Custom Plans are written by you (<a href="go.page:how-to-write-a-plan" target="_blank">Learn how to write a plan</a>). This list has higher priority than public plans.',
 
-
+    "setting.notice.access-token": "Enter you access token",
+    
     // label
     "setting.storage-folder.label": "Saving Folder",
     "setting.storage-filename.label": "Filename",
@@ -422,6 +426,7 @@
     "plan-subscription.title.subscription": "Base Information",
     "plan-subscription.title.plans": "Plans",
 
-  }};
+  }
+};
 
   export default LocaleEn;

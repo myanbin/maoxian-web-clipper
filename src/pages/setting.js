@@ -222,6 +222,14 @@ function initSettingPath(config) {
   );
 }
 
+function initSettingXinhuaNote(config) {
+  // TODO:
+  initTextInput(config,
+    'access-token',
+    'accessToken',
+  );
+}
+
 // section: refresh history
 function initRefreshHistory(config) {
   initOptionsInput(config,
@@ -423,10 +431,13 @@ function storageHandlerChanged(value) {
   .then(({isEnabled, handlerInfo, section}) => {
     T.queryElem('.save-format', section).classList.remove('active');
     T.queryElem('.local-path', section).classList.remove('active');
+    T.queryElem('.xinhua-note', section).classList.remove('active');
     if(isEnabled && handlerInfo.ready) {
       renderSaveFormat(section, handlerInfo.supportFormats);
       if(['Browser', 'NativeApp'].indexOf(value) > -1) {
         renderLocalPathOptions(section);
+      } else if ('XinhuaNote' === value) {
+        renderXinhuaNoteOptions(section);
       }
     }
   });
@@ -485,6 +496,14 @@ function renderLocalPathOptions(section) {
   div.classList.add('active');
   MxWcConfig.load().then((config) => {
     initSettingPath(config);
+  });
+}
+
+function renderXinhuaNoteOptions(section) {
+  const div = T.queryElem('.xinhua-note', section);
+  div.classList.add('active');
+  MxWcConfig.load().then((config) => {
+    initSettingXinhuaNote(config);
   });
 }
 

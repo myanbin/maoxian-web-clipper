@@ -146,11 +146,11 @@ section {
   display: block;
 }
 
-#setting-storage > .save-format, .local-path {
+#setting-storage > .save-format, .local-path, .xinhua-note {
   display: none;
 }
 
-#setting-storage > .save-format.active, .local-path.active {
+#setting-storage > .save-format.active, .local-path.active, .xinhua-note.active {
   display: block;
 }
 #setting-offline-page > .detail {

@@ -38,6 +38,7 @@ function style(){
       background-color: #333;
       font-family: monospace;
       font-size: 16px;
+      float: right;
     }
 
     .notify > .notify-btn .r1,

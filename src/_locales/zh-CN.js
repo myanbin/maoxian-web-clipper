@@ -1,6 +1,6 @@
-  "use strict";
+"use strict";
 
-  const LocaleZhCN = {
+const LocaleZhCN = {
   "values": {
     "name": "MaoXian 网页裁剪",
 
@@ -74,9 +74,9 @@
     "welcome.installation-hint": "MaoXian Web Clipper $version 已经成功安装",
     "welcome.sayhi": "欢迎！",
     "welcome.extra-intro": "在你开始裁剪之前，请把下面这两个额外步骤走完，以便拥有最佳体验",
-    "welcome.extra-1-chrome": "1. 关闭谷歌的 ‘每次下载都询问保存位置’ 这个选项<br />这个可以通过取消复选框 <a href='' link='chrome://settings/downloads' class='tab-link'>chrome://settings</a>< &gt; <i>下载</i> &gt; <i>每次下载都询问保存位置</i>",
+    "welcome.extra-1-chrome": "1. 关闭谷歌的 ‘每次下载都询问保存位置’ 这个选项<br />这个可以通过取消复选框 <a href='' link='chrome://settings/downloads' class='tab-link'>chrome://settings</a> &gt; <i>下载</i> &gt; <i>每次下载都询问保存位置</i>",
     "welcome.extra-1-firefox": "1. 关闭火狐的 ‘每次下载都询问保存位置’ 这个选项<br /> 从浏览器地址栏输入 about:preferences< &gt; 回车 &gt; <i>下载</i> &gt; <i>取消选中「每次下载都询问保存位置」</i>",
-    "welcome.extra-2-chrome": "2. 允许 MaoXian 访问本地网址来获得更好的预览体验, 勾选复选框<i>「允许扩展访问本地文件」</i> 通过 $extensionLink<.",
+    "welcome.extra-2-chrome": "2. 允许 MaoXian 访问本地网址来获得更好的预览体验, 通过 $extensionLink 勾选复选框<i>「允许扩展访问本地文件」</i>",
     "welcome.extra-2-firefox": "2. 允许 MaoXian 访问本地网址来获得更好的预览体验, 详见 <a href='go.page:faq-allow-access-file-urls' target='_blank'>允许访问本地网址</a><",
     "welcome.notice": "<strong class='green'>注意：</strong> 如果你要裁剪的页面是在安装本扩展之前打开的，请先刷新那个页面",
     "welcome.last-hint": "如果你还有其他的问题，请访问我们的 <a href='go.page:faq' target='_blank'>FAQ</a> 页面</p>",
@@ -117,6 +117,9 @@
     "setting.title.handler-native-app": "本地程序",
     "setting.title.handler-wiz-note-plus" :"为知笔记",
     "setting.title.handler-xinhua-note" :"新华笔记",
+
+    "setting.title.xinhua-note": "新华笔记",
+    "setting.title.access-token": "授权 Token",
 
     "setting.title.save-format": "保存格式",
     "setting.title.control": "操作设置",
@@ -267,6 +270,8 @@
     "setting.notice.edit-subscription": "通过下方文本框编辑订阅信息，你可以使用「换行符」分隔多个订阅网址，任何使用 <code>#</code>开头的行将被视为注释。<br /><br /><strong>注意：</strong><br /> 1. 扩展提供的默认订阅网址，是没有拉取订阅信息的。如果你是第一次使用该功能，请点击「更新按钮」进行拉取。<br />2. 点击「保存按钮」并不会拉取订阅信息。你应该在保存成功后，通过点击「更新按钮」或者勾选「自动更新复选框」来拉取订阅信息。<br /><br /><a href='go.page:public-subscriptions' target='_blank'>查看可订阅列表</a>",
     "setting.notice.custom-plan-intro": '由你编写的「计划」（ <a href="go.page:how-to-write-a-plan" target="_blank">了解如何编写「计划」</a>），自定义「计划」比公开的「计划」拥有更高的优先级',
 
+    "setting.notice.access-token": "在此处填入你的新华笔记 Token，以确保扩展知道你的身份",
+    
     // label
     "setting.storage-folder.label": "存储目录",
     "setting.storage-filename.label": "文件名",
@@ -418,6 +423,7 @@
     "plan-subscription.title.subscription": "基本信息",
     "plan-subscription.title.plans": "计划",
 
-  }};
+  }
+};
 
   export default LocaleZhCN;
