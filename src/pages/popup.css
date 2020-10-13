@@ -9,7 +9,7 @@ body {
   min-width: 130px;
   max-width: 500px;
   width: auto;
-  padding: 8px 0px 8px 0px;
+  padding: 4px 0;
 }
 
 .menu{
@@ -41,8 +41,6 @@ body {
   font-size: 14px;
   height: 20px;
   line-height: 20px;
-  position: relative;
-  top: 1px;
 }
 
 .icon .r1,
@@ -61,11 +59,9 @@ body {
   height: 100%;
   /*border-radius: 2px;*/
 }
-.icon.check .c25,
-.icon.check .c31,
-.icon.check .c34,
-.icon.check .c42,
-.icon.check .c43 {background-color: #0a84ff;}
+.icon.activity {
+  color: #0a84ff;
+}
 
 .icon.clip .c14,
 .icon.clip .c22,

@@ -126,12 +126,12 @@ async function renderMenus(){
   const template = T.findElem('menu-tpl').innerHTML;
 
   const icons = {
-    "last-result" : 'check',
-    "clip"        : 'clip',
-    "history"     : 'history',
-    "setting"     : 'setting',
+    "last-result" : 'activity',
+    "clip"        : 'crop',
+    "history"     : 'folder',
+    "setting"     : 'settings',
     "home"        : 'home',
-    "debug"       : "history",
+    "debug"       : "smile",
   }
 
   let html = "";
