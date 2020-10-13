@@ -109,7 +109,9 @@ input[type=text] {
 
 .modal > .mask > .content .path {
   border: 0px;
-  font-size: 12px;
+  height: 1.5em;
+  padding-left: 5px;
+  padding-right: 5px;
   display: inline-block;
   width: 100%;
 }

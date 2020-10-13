@@ -7,6 +7,7 @@ import Task   from '../lib/task.js';
 
 import StorageConfig_Default     from './storage-config-default.js';
 import StorageConfig_WizNotePlus from './storage-config-wiznoteplus.js';
+import StorageConfig_XinhuaNote  from './storage-config-xinhua-note.js';
 import StorageConfigRender       from './storage-config-render.js';
 
 import MxHtmlClipper     from './clip-as-html.js';
@@ -44,6 +45,12 @@ function getReadyToClip(formInputs, config, {domain, pageUrl}) {
         now: now, config: config
       });
       break;
+    case 'XinhuaNote':
+      storageConfig = StorageConfig_XinhuaNote.get({
+        config,
+        userInput
+      });
+      break;
     default:
       // Browser or NativeApp
       storageConfig = StorageConfig_Default.get({
@@ -72,6 +79,7 @@ function getReadyToClip(formInputs, config, {domain, pageUrl}) {
     category   : userInput.category,
     tags       : userInput.tags.concat(appendTags),
     created_at : tObj.toString(),
+    handler    : config.clippingHandler
   }
 
   return {userInput, info, storageInfo, storageConfig};

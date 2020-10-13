@@ -155,7 +155,7 @@ function renderClipDetail(v) {
       clipPath = `<a class="path-link" href="">${v.url}</a>`;
       break;
     case 'openUrlByCopyAndPaste':
-      clipPath =`<input type="text" class='path' readonly="true" value="${v.url}" />`;
+      clipPath =`<input type="text" class='path form-control' readonly="true" value="${v.url}"/>`;
       break;
   }
   return T.renderTemplate(template, {

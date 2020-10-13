@@ -116,6 +116,7 @@
     "setting.title.handler-browser": "浏览器",
     "setting.title.handler-native-app": "本地程序",
     "setting.title.handler-wiz-note-plus" :"为知笔记",
+    "setting.title.handler-xinhua-note" :"新华笔记",
 
     "setting.title.save-format": "保存格式",
     "setting.title.control": "操作设置",
@@ -199,6 +200,10 @@
     "handler.wiz-note-plus.feature.a": "将网页剪裁保存到为知笔记数据库",
     "handler.wiz-note-plus.warning": "<strong> 警告！ </strong><br /> 如果你启用为知笔记，你必须先 <a href='https://github.com/altairwei/WizNotePlus/releases' target='_blank'>安装它</a>，并且剪裁时为知笔记必须处于启动状态，否则处理程序无法正常工作",
 
+    "handler.xinhua-note.name": "新华笔记",
+    "handler.xinhua-note.intro": "新华笔记",
+    "handler.xinhua-note.feature.a": "下载裁剪结果到新华笔记",
+    "handler.xinhua-note.feature.b": "新华笔记",
 
     "setting.option.request-referrer-policy.origin-when-cross-origin": "同域请求时，Referrer 为全路径（请求域 + 请求路径），跨域请求时，Referrer 只包含请求域（协议 + 域名 + 端口）",
     "setting.option.request-referrer-policy.origin": "Referrer 只包含请求域（协议 + 域名 + 端口）",
@@ -209,6 +214,7 @@
     "setting.notice.info.storage.browser": "使用浏览器来下载裁剪结果",
     "setting.notice.info.storage.native-app": "通过本地安装的程序，来下载裁剪结果（如果你安装了某个管理下载的扩展，可通过该方式，绕过扩展互相冲突的问题）<br /><a href='go.page:native-app' target='_blank'>选择本选项需先安装「本地程序」</a>",
     "setting.notice.info.storage.wiz-note-plus": "使用为知笔记保存剪裁结果<br />",
+    "setting.notice.info.storage.xinhua-note": "使用新华笔记保存剪裁结果<br />",
 
     "setting.notice.info.offline-page.browser": "$BLANK",
     "setting.notice.info.offline-page.native-app": "$BLANK",
@@ -217,6 +223,7 @@
     "setting.notice.warning.storage.browser": "$BLANK",
     "setting.notice.warning.storage.native-app": "$BLANK",
     "setting.notice.warning.storage.wiz-note-plus": "$BLANK",
+    "setting.notice.warning.storage.xinhua-note": "$BLANK",
     "setting.notice.warning.offline-page.browser": "$BLANK",
     "setting.notice.warning.offline-page.native-app": "$BLANK",
     "setting.notice.warning.refresh-history.native-app": "$BLANK",
