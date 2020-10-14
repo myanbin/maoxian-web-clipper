@@ -16,6 +16,9 @@ import getPikadayI18n from '../_locales/pikaday.i18n.js';
 import './_base.css';
 import './history.css';
 
+import '../../node_modules/jquery/dist/jquery.slim'
+import '../../node_modules/bootstrap/dist/js/bootstrap.bundle';
+
 import Awesomplete from 'awesomplete';
 import 'awesomplete/awesomplete.css';
 import Pikaday from 'pikaday';
@@ -165,7 +168,10 @@ function renderClipDetail(v) {
     createdAt: v.clip.created_at,
     category: v.clip.category,
     tags: v.clip.tags.join(", "),
-    format: v.clip.format
+    format: v.clip.format,
+    handler: v.clip.handler,
+    clipId: v.clip.clipId,
+    version: v.clip.version
   });
 }
 

@@ -56,10 +56,10 @@
             <thead class="">
               <tr>
                 <th width="100px" i18n="history.th.time"></th>
-                <th width="160px" i18n="history.th.category"></th>
+                <th width="140px" i18n="history.th.category"></th>
                 <th i18n="history.th.title"></th>
                 <th width="160px" i18n="history.th.tag"></th>
-                <th width="100px"> - </th>
+                <th width="160px"> - </th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -86,6 +86,14 @@
         </td>
         <td>${tags}</td>
         <td class="operation">
+          <span class="dropdown">
+            <button class="btn btn-outline-info btn-sm dropdown-toggle" type="button" id="send-to-menu" data-toggle="dropdown">发送到</button>
+            <div class="dropdown-menu" aria-labelledby="send-to-menu">
+              <a class="dropdown-item" href="#">新采编编辑器</a>
+              <a class="dropdown-item" href="#">视频编辑系统</a>
+              <a class="dropdown-item" href="#">新采编素材库</a>
+            </div>
+          </span>
           <a href="history.delete:${clipId}" i18n="history.op.delete" class="btn btn-outline-danger btn-sm" role="button"></a>
         </td>
       </tr>
@@ -100,6 +108,10 @@
       </table>
       <table class="table table-bordered">
         <tbody>
+          <tr>
+            <th i18n="history.th.clip-id"></th><td>${clipId}</td>
+            <th i18n="history.th.handler"></th><td>${handler}</td>
+          </tr>
           <tr>
             <th i18n="history.th.time"></th><td>${createdAt}</td>
             <th i18n="history.th.category"></th><td>${category}</td>

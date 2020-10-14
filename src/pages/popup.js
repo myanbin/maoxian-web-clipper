@@ -128,7 +128,7 @@ async function renderMenus(){
   const icons = {
     "last-result" : 'activity',
     "clip"        : 'crop',
-    "history"     : 'folder',
+    "history"     : 'server',
     "setting"     : 'settings',
     "home"        : 'home',
     "debug"       : "smile",

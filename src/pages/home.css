@@ -6,4 +6,11 @@
   /*
   border: 1px solid #ccc;*/
   background-color: #fff;
+  position: relative;
+}
+
+.version-label {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
