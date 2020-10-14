@@ -207,6 +207,7 @@ const LocaleZhCN = {
     "handler.xinhua-note.intro": "新华笔记",
     "handler.xinhua-note.feature.a": "下载裁剪结果到新华笔记",
     "handler.xinhua-note.feature.b": "新华笔记",
+    "handler.xinhua-note.warning": "<strong>警告！</strong><br /> 如果你启用新华笔记，你必须先设置 Access Token，否则处理程序无法正常工作",
 
     "setting.option.request-referrer-policy.origin-when-cross-origin": "同域请求时，Referrer 为全路径（请求域 + 请求路径），跨域请求时，Referrer 只包含请求域（协议 + 域名 + 端口）",
     "setting.option.request-referrer-policy.origin": "Referrer 只包含请求域（协议 + 域名 + 端口）",

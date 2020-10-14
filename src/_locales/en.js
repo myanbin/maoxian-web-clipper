@@ -194,7 +194,7 @@ const LocaleEn = {
     "handler.native-app.feature.a": "Save clipping file (to avoid conflic with download manage extension)",
     "handler.native-app.feature.b": "Delete clipping file (when you delete a clipping record in clipping history page, it delete files that relative to that record)",
     "handler.native-app.feature.c": "Refresh history (This is useful when you have two clipping sources (e.g. two browsers on same computer or different computers) and want to keep clipping history latest)",
-    "handler.native-app.warning": "<strong> Warning! </strong><br /> If you enable this handler, you must <a href='go.page:native-app' target='_blank'>install native application</a> first.",
+    "handler.native-app.warning": "<strong>Warning! </strong><br /> If you enable this handler, you must <a href='go.page:native-app' target='_blank'>install native application</a> first.",
     "handler.native-app.error.version": "Extension require the version of Native Application bigger than or equal to $requiredVersion, But current version is $currentVersion, please <a href='go.page:native-app#upgrade' target='_blank'>upgrade your native application</a>",
     "handler.native-app.error.install": "It seems like you haven't installed it correctly. (<a href='go.page:native-app' target='_blank'>How to install it</a>)",
 
@@ -207,6 +207,8 @@ const LocaleEn = {
     "handler.xinhua-note.intro": "Xinhua Note",
     "handler.xinhua-note.feature.a": "Save clipping file to Xinhua Note database.",
     "handler.xinhua-note.feature.b": "Xinhua Note",
+    "handler.xinhua-note.warning": "<strong>Warning! </strong><br /> If you enable this handler, you must setting Access Token first.",
+
 
     "setting.option.request-referrer-policy.origin-when-cross-origin": "originWhenCrossOrigin: full path (origin + path) when request to same origins, origin (protocol + host + port) only when request to other origins.",
     "setting.option.request-referrer-policy.origin": "origin: origin only (protocol + host + port).",
