@@ -134,6 +134,8 @@ async function renderMenus(){
     "debug"       : "smile",
   }
 
+  menuIds = ['last-result', 'clip', 'history', 'setting', 'home', 'debug']
+
   let html = "";
   menuIds.forEach(function(menuId){
     html += T.renderTemplate(template, {

@@ -12,6 +12,7 @@ import MdPluginMathML2LaTeX  from '../lib/md-plugin-mathml2latex.js';
 import CaptureTool           from '../capturer/tool.js';
 import CapturerA             from '../capturer/a.js';
 import CapturerImg           from '../capturer/img.js';
+import CapturerVideo         from '../capturer/video.js';
 import CapturerIframe        from '../capturer/iframe.js';
 import CapturerCustomElement from '../capturer/custom-element.js';
 
@@ -191,6 +192,10 @@ async function captureNode(node, params) {
     case 'IMG':
       opts = {saveFormat, baseUrl, storageInfo, clipId, mimeTypeDict};
       r = await CapturerImg.capture(node, opts);
+      break;
+    case 'VIDEO':
+      opts = {saveFormat, baseUrl, storageInfo, clipId, mimeTypeDict};
+      r = await CapturerVideo.capture(node, opts);
       break;
     case 'A':
       opts = {baseUrl, docUrl};

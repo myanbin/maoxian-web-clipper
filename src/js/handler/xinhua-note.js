@@ -36,8 +36,7 @@ const ClippingHandler_XinhuaNote = {
       method: 'get',
       url: 'https://pd.xinhua-news.cn/zzlb/api/app/acts/2/rounds/3/paper',
       headers: { 
-        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo3NjMsIm5hbWUiOiLpqazoibPlvawiLCJjZWxsbnVtYmVyIjpudWxsfSwiaXNzIjoicGQueGluaHVhLW5ld3MuY24iLCJleHAiOjE2MDMxODUwOTksImlhdCI6MTYwMjU4MDI5OX0.Gxjdsp-GeYJi-DX0bjDBfLnrWjbvONlWjinohohY0wg', 
-        'Cookie': 'connect.sid=s%3Ak_piX_RszagYUDuYKzDz4iAjRBHs2deI.9Exgok%2BYE4c1qvGH9WLY1aIhMH5loB0M6GgP4jmVGDE'
+        'Authorization': 'xODUwOTksImlhdCI6MTYwMjU4MDI5OX0Gxjds', 
       }
     };
     
