@@ -267,6 +267,11 @@ function initSettingAdvanced(config) {
     'requestTimeout'
   );
 
+  initNumberInput(config,
+    'request-max-tries-input',
+    'requestMaxTries'
+  );
+
   initCheckboxInput(config,
     'communicate-with-third-party',
     'communicateWithThirdParty'

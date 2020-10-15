@@ -33,11 +33,19 @@
         <h2 class="center" i18n="setting.title.advanced"></h2>
         <div>
           <h3 i18n="setting.title.request"></h3>
+
           <h4 i18n="setting.title.request-timeout"></h4>
           <div class="form-group">
             <label for="request-timeout-input" i18n="setting.request-timeout-input.label"></label>
             <input type="number" id="request-timeout-input" class="form-control" min="5" max="240" value="20" required/>
           </div>
+
+          <h4 i18n="setting.title.request-max-tries"></h4>
+          <div class="form-group">
+            <label for="request-max-tries-input" i18n="setting.request-max-tries-input.label"></label>
+            <input type="number" id="request-max-tries-input" class="form-control" min="5" max="240" value="20" required/>
+          </div>
+
           <h4 i18n="setting.title.request-referrer-policy"></h4>
           <div id="request-referrer-policy">
             <div>
