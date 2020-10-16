@@ -29,23 +29,24 @@ function capture(node, opts) {
 
   // handle src
   const src = node.getAttribute('src');
-  const {isValid, url, message} = T.completeUrl(src, baseUrl);
-  if (isValid) {
-    const {filename, path} = Asset.calcInfo(url, storageInfo, {httpMimeType: mimeTypeDict[url]}, clipId);
-    const task = Task.createVideoTask(filename, url, clipId);
-    node.setAttribute('src', path);
-    tasks.push(task);
+  if (src !== null) {
+    const {isValid, url, message} = T.completeUrl(src, baseUrl);
+    if (isValid) {
+      const {filename, path} = Asset.calcInfo(url, storageInfo, {httpMimeType: mimeTypeDict[url]}, clipId);
+      const task = Task.createVideoTask(filename, url, clipId);
+      node.setAttribute('src', path);
+      tasks.push(task);
+    } else {
+      node.setAttribute('data-mx-warn', message);
+      node.setAttribute('data-mx-original-src', (src || ''));
+      node.setAttribute('src', 'invalid-url.mp4');
+    }
   } else {
-    node.setAttribute('data-mx-warn', message);
-    node.setAttribute('data-mx-original-src', (src || ''));
-    node.setAttribute('src', 'invalid-url.png');
-  }
-
-  // handle srcset
-  if (saveFormat === 'html') {
-    const r = CaptureTool.captureImageSrcset(node, opts);
-    node = r.node;
-    tasks.push(...r.tasks);
+    const sourceNodes = node.querySelectorAll('source');
+    [].forEach.call(sourceNodes, (sourceNode) => {
+      const {tasks: sourceTasks} = CaptureTool.captureVideoSrc(sourceNode, opts);
+      tasks.push(...sourceTasks);
+    });
   }
 
   return {node, tasks};

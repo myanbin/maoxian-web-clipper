@@ -33,6 +33,36 @@ function captureBackgroundAttr(node, {baseUrl, storageInfo, config, clipId, mime
  * and <source> element in <picture>
  * @return {Array} imagetasks
  */
+function captureVideoSrc(node, {baseUrl, storageInfo, clipId, mimeTypeDict = {}}) {
+  const src = node.getAttribute('src');
+  const tasks = [];
+  if (src) {
+    let attrMimeType = null;
+    if (node.tagName.toUpperCase() === 'SOURCE') {
+      attrMimeType = node.getAttribute('type');
+    }
+    const {isValid, url, message} = T.completeUrl(src, baseUrl);
+    if (isValid) {
+      const {filename, path} = Asset.calcInfo(url, storageInfo, {
+        httpMimeType: mimeTypeDict[url],
+        attrMimeType: attrMimeType
+      }, clipId);
+      const task = Task.createVideoTask(filename, url, clipId);
+      tasks.push(task);
+      node.setAttribute('src', path);
+    } else {
+      node.setAttribute('src', 'invalid-url.mp4');
+    }
+    
+  }
+  return {node, tasks};
+}
+
+/**
+ * capture srcset of <img> element
+ * and <source> element in <picture>
+ * @return {Array} imagetasks
+ */
 function captureImageSrcset(node, {baseUrl, storageInfo, clipId, mimeTypeDict = {}}) {
   const srcset = node.getAttribute('srcset');
   const tasks = [];
@@ -199,6 +229,7 @@ function isDowngradeHttpRequest(fromUrl, toUrl) {
 
 const CaptureTool = {
   captureBackgroundAttr: captureBackgroundAttr,
+  captureVideoSrc: captureVideoSrc,
   captureImageSrcset: captureImageSrcset,
   parseSrcset: parseSrcset,
   getRequestHeaders: getRequestHeaders,
