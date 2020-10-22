@@ -23,6 +23,16 @@ const LocaleZhCN = {
     "error.not-a-number": "输入值不是数字",
     "error.not-in-allowed-range": "输入值不在允许范围之内",
 
+    // clipping attributes
+    "attr.title": "标题",
+    "attr.path": "路径",
+    "attr.time": "时间",
+    "attr.category": "目录",
+    "attr.tag": "标签",
+    "attr.tags": "标签",
+    "attr.format": "格式",
+    "attr.original-url": "裁自",
+
 
     //=====================================
     // home page
@@ -120,6 +130,10 @@ const LocaleZhCN = {
 
     "setting.title.xinhua-note": "新华笔记",
     "setting.title.access-token": "授权 Token",
+    "setting.title.reset-and-backup": "重置与备份",
+    "setting.title.reset": "重置",
+    "setting.title.backup": "备份",
+    "setting.title.restore": "恢复",
 
     "setting.title.save-format": "保存格式",
     "setting.title.control": "操作设置",
@@ -243,6 +257,9 @@ const LocaleZhCN = {
     "setting.button.refresh-now": "马上刷新",
     "setting.button.update-now": "马上更新",
     "setting.button.save": "保存",
+    "setting.button.reset-to-default": "恢复到默认设置",
+    "setting.button.backup-to-file": "备份设置到文件",
+    "setting.button.restore-from-file": "从文件中恢复设置",
 
     // notice
     "setting.notice.main-file-intro": "主文件是你裁剪下来的 HTML 文件（即网页文件）或者是 Markdown 文件（取决于保存格式是什么）",
@@ -289,7 +306,7 @@ const LocaleZhCN = {
     "setting.save-web-font-input.label": "保存 Web 字体（建议取消勾选）",
     "setting.save-css-image-input.label": "存储 CSS 背景图（建议取消勾选）",
     "setting.save-domain-tag-input.label": "裁剪时，添加当前域名为标签",
-    "setting.hotkey-switch-enabled-input.label": "启用快捷键 <code>c</code>（裁剪开关）",
+    "setting.hotkey-switch-enabled-input.label": "启用快捷键 <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>c</kbd>（裁剪开关）",
     "setting.mouse-mode-enabled-input.label": "鼠标友好模式",
     "setting.input-field-save-format-enabled.label": "启用表单上的格式选择",
     "setting.remember-selection-input.label": "记住选区，并在下次尝试自动选中",
@@ -304,9 +321,18 @@ const LocaleZhCN = {
     "setting.last-refresh-time.label": "上次刷新时间",
     "setting.communicate-with-third-party-input.label": "开启第三方消息",
     "setting.assistant-enabled-input.label": "启用助手",
-    "setting.auto-update-public-plan-input.label": "自动更新（每次你打开浏览器都会尝试进行更新）",
+    "setting.auto-update-public-plan-input.label": "自动更新 (每次你打开浏览器都会尝试进行更新)",
+    "setting.backup-setting-page-config-input.label": "设置页面的配置信息",
+    "setting.backup-history-page-config-input.label": "历史页面的配置信息",
+    "setting.backup-assistant-data-input.label": "毛线助手的数据（自定义的「计划」，订阅信息 和 已下载的「计划」）",
+    "setting.backup-selection-data-input.label": "已记住的选区信息",
     "setting.last-update-time.label": "上次更新时间",
     "setting.update-now-success.label": "更新成功",
+    "setting.reset-to-default-intro.label": "下方列出的项目都会被重置。",
+    "setting.reset-to-default-warning.label": "所有的修改都将被移除，你确定要恢复到默认设置？",
+    "setting.reset-to-default-success.label": "重置成功",
+    "setting.restore-from-file-intro.label": "从 JSON 文件中恢复设置数据",
+    "setting.restore-from-file-success.label": "数据导入成功",
 
     // placeholder
     "setting.placeholder.notblank": "此项不能为空",
@@ -375,6 +401,7 @@ const LocaleZhCN = {
     "lcr.notice.not-clipping-result": "无内容可查看",
     "lcr.notice.openable-url": "你可点击下方链接查看该裁剪结果.",
     "lcr.notice.can-not-open-file-url": "你无法直接打开该链接. 因为扩展不被允许打开该类型的链接, 查看 <strong>设置页 > 本地网址</strong> 获取关于此的更多信息",
+    "lcr.notice.copy-url": "如果你无法打开上方网址，则用下面的输入框帮你复制它",
     "lcr.message.failed-task-num": "本次裁剪过程中，有 $num 个资源保存失败.",
 
     //=====================================

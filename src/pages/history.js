@@ -288,13 +288,13 @@ function deleteHistoryAndFile(config, id) {
           if(result.ok) {
             deleteHistoryOnly(result.clip_id, true);
             if(result.message){
-              Notify.error(t(result.message));
+              Notify.error(I18N.t(result.message));
             } else {
               Notify.success(I18N.t('history.notice.delete-history-success'));
             }
           } else {
             console.error(result)
-            Notify.error(t(result.message));
+            Notify.error(I18N.t(result.message));
           }
         });
       });
@@ -502,7 +502,7 @@ function initLinks(){
     const a = document.createElement("a");
     a.href = MxWcLink.get(link.pageName);
     a.target = '_blank';
-    a.className = 'btn btn-secondary btn-sm';
+    a.className = 'btn btn-outline-danger btn-sm';
     a.innerText = link.name;
     elem.appendChild(a);
   })

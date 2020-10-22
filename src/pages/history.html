@@ -10,7 +10,7 @@
       <ul class="links nav justify-content-end bg-primary">
         <h3 class="text-white">Clipping Hisotry</h3>
         <button id="export-history" i18n="history.btn.export-history" class="btn btn-outline-light btn-sm mr-2"></button>
-        <button id="clear-history" i18n="history.btn.clear-history" class="btn btn-secondary btn-sm mr-2"></button>
+        <button id="clear-history" i18n="history.btn.clear-history" class="btn btn-outline-danger btn-sm mr-2"></button>
       </ul>
         
       <div class="clearfix"></div>
@@ -102,8 +102,8 @@
     <template id="modal-content-tpl">
       <table class="table table-bordered">
         <tbody>
-          <tr><th i18n="history.th.title"></th><td>${title}</td></tr>
-          <tr><th i18n='history.th.path'></th><td>${clipPath}</td></tr>
+          <tr><th i18n="attr.title"></th><td>${title}</td></tr>
+          <tr><th i18n='attr.path'></th><td>${clipPath}</td></tr>
         </tbody>
       </table>
       <table class="table table-bordered">
@@ -117,11 +117,11 @@
             <th i18n="history.th.category"></th><td>${category}</td>
           </tr>
           <tr>
-            <th i18n="history.th.tag"></th><td>${tags}</td>
-            <th i18n="history.th.format"></th><td>${format}</td>
+            <th i18n="attr.tag"></th><td>${tags}</td>
+            <th i18n="attr.format"></th><td>${format}</td>
           </tr>
           <tr>
-            <th i18n='history.th.original-url'></th>
+            <th i18n='attr.original-url'></th>
             <td colspan="3">
               <a href="${originalUrl}" target="_blank" referrerpolicy="no-referrer" rel="noopener noreferrer">${originalUrl}</a>
             </td>
