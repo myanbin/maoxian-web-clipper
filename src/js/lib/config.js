@@ -1,7 +1,8 @@
 
+import T           from './tool.js';
 import MxWcStorage from './storage.js';
 
-const VERSION = '1.2';
+const VERSION = '1.3';
 const state = {};
 
 /** WARNING
@@ -51,6 +52,13 @@ function getDefault(){
     requestMaxTries: 3,
     /* noReferrer, origin, originWhenCrossOrigin, unsafeUrl */
     requestReferrerPolicy: 'originWhenCrossOrigin',
+    /* cache */
+    requestCacheSize: 80,
+    requestCacheCss: true,
+    requestCacheImage: true,
+    requestCacheWebFont: false,
+
+    /* misc */
     communicateWithThirdParty: false,
 
     //=====================================
@@ -231,14 +239,52 @@ function reset() {
 /*
  * Fix config's keys
  */
-function fixKeys(config){
+function fixKeys(config, fromConfig = {}){
   const defaultConfig = getDefault();
   for(const k in defaultConfig){
     if(!config.hasOwnProperty(k)){
-      config[k] = defaultConfig[k];
+      if (fromConfig.hasOwnProperty(k)) {
+        config[k] = fromConfig[k];
+      } else {
+        config[k] = defaultConfig[k];
+      }
     }
   }
   return config;
+}
+
+/**
+ * When config is saved into storage,
+ * their keys became ordered. which
+ * is not a expected behavior when
+ * you show them.
+ *
+ * WARNING: it'll return a new Object
+ */
+function unsort(config) {
+  const r = {};
+  CONFIG_KEYS.forEach((k) => {
+    r[k] = config[k];
+  })
+  return r;
+}
+
+function isMigratable(config) {
+  if (config.version) {
+    if (T.isVersionLteq(config.version, VERSION)) {
+      return {ok: true}
+    } else {
+      return {
+        ok: false,
+        errMsg: `Configuration invalid: version (v${config.version}) is too big , Current extension only supports v${VERSION}.`
+      }
+    }
+  } else {
+    return {
+      ok: false,
+      errMsg:"Configuration Invalid: it must has a 'version' property"
+    };
+  }
 }
 
 const Config = {
@@ -249,6 +295,8 @@ const Config = {
   reset: reset,
   getDefault: getDefault,
   fixKeys: fixKeys,
+  unsort: unsort,
+  isMigratable: isMigratable,
 }
 
 export default Config;

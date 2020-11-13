@@ -21,6 +21,12 @@ function saveClipping(clipping, feedback) {
   });
 }
 
+function retryTask(task, feedback) {
+  listen();
+  SavingTool.retryTask(task, feedback);
+  saveTask(task);
+}
+
 function handleClippingResult(it) {
   it.url = T.toFileUrl(it.filename);
   return it;
@@ -240,14 +246,14 @@ function listen() {
 }
 
 
-const ClippingHandler_Browser = {
-  name: 'Browser',
-  init: init,
-  getInfo: getInfo,
-  saveClipping: saveClipping,
-  saveTextFile: saveTextFile,
-  handleClippingResult: handleClippingResult,
-  initDownloadFolder: initDownloadFolder
-}
+const ClippingHandler_Browser = Object.assign({name: 'Browser'}, {
+  init,
+  getInfo,
+  saveClipping,
+  saveTextFile,
+  retryTask,
+  handleClippingResult,
+  initDownloadFolder,
+});
 
 export default ClippingHandler_Browser;

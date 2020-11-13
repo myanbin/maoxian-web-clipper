@@ -117,6 +117,12 @@ T.sliceObjByFilter = function(obj, ...filters) {
   return r;
 }
 
+T.rmAttributeFilter = function(...attrNames) {
+  return function(key) {
+    return !(attrNames.indexOf(key) > -1)
+  }
+}
+
 T.attributeFilter = function(attrName, answer) {
   return function(key) {
     return key === attrName ? answer : 'NEXT';
@@ -458,7 +464,15 @@ T.replaceAll = function(str, subStr, newSubStr){
 
 
 T.getUrlFileName = function(url){
-  return new URL(decodeURI(url)).pathname.split('/').pop();
+  const lastPart = new URL(decodeURI(url)).pathname.split('/').pop();
+  const idxA = lastPart.lastIndexOf('.');
+  const idxB = lastPart.lastIndexOf('!');
+  if (idxA > -1 && idxB > -1 && idxA < idxB) {
+    // remove "!large" of "name.ext!large"
+    return lastPart.substring(0, idxB);
+  } else {
+    return lastPart
+  }
 }
 
 T.getFileExtension = function(filename){
@@ -881,6 +895,7 @@ T.createMRUCache = function(size) {
     array: [],
     map: new Map(),
     add(key, value) {
+      if (this.size < 1) {return}
       const found = this.map.has(key);
       this.map.set(key, value);
       if ( !found ) {
@@ -896,6 +911,7 @@ T.createMRUCache = function(size) {
       }
     },
     get(key) {
+      if (this.size < 1) {return undefined}
       const value = this.map.get(key);
       if ( value !== undefined && this.array[0] !== key ) {
         let i = this.array.indexOf(key);
@@ -1133,6 +1149,9 @@ T.createResourceCache = function({size = 80}) {
         });
       });
       return result;
+    },
+    reset() {
+      this.cache.reset();
     }
   }
 }
@@ -1237,6 +1256,16 @@ T.isVersionGteq = function(vA, vB) {
   if (minorA != minorB) { return minorA > minorB }
   if (microA != microB) { return microA > microB }
   return secureA >= secureB;
+}
+
+// Lteq => less than or equals to
+T.isVersionLteq = function(vA, vB) {
+  const [majorA, minorA = 0, microA = 0, secureA = 0] = T.extractVersion(vA);
+  const [majorB, minorB = 0, microB = 0, secureB = 0] = T.extractVersion(vB);
+  if (majorA != majorB) { return majorA < majorB }
+  if (minorA != minorB) { return minorA < minorB }
+  if (microA != microB) { return microA < microB }
+  return secureA <= secureB;
 }
 
 T.extractVersion = function(version) {

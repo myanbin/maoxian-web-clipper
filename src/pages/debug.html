@@ -11,6 +11,7 @@
       <section class="storage">
         <h2>Storage</h2>
         <div class="content">
+          <div class="usedBytes"></div>
           <details class="config">
             <summary> Configuration </summary>
             <pre><code></code></pre>
@@ -27,11 +28,34 @@
             <summary> Misc </summary>
             <pre><code></code></pre>
           </details>
+          <details class="categories">
+            <summary> categories (<strong class="num"></strong>) </summary>
+            <pre><code></code></pre>
+          </details>
+          <details class="tags">
+            <summary> tags (<strong class="num"></strong>) </summary>
+            <pre><code></code></pre>
+          </details>
+          <details class="clippings">
+            <summary> clippings (<strong class="num"></strong>)
+              <span class="usedBytes"></span>
+            </summary>
+            <pre><code></code></pre>
+          </details>
+          <details class="failed-tasks">
+            <summary> failed tasks (<strong class="num"></strong>)
+            </summary>
+            <pre><code></code></pre>
+          </details>
         </div>
       </section>
 
       <section class="asset-cache">
         <h2>Asset Cache</h2>
+        <div>
+          <button id="clear-asset-cache">clear</button>
+        </div>
+        <br />
         <div >There are <strong class="num"></strong> records</div>
         <div class="content">
           <details class="cache-details">

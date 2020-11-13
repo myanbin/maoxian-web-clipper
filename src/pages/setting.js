@@ -263,13 +263,38 @@ function initOfflinePage(config) {
 function initSettingAdvanced(config) {
 
   initNumberInput(config,
-    'request-timeout-input',
+    'request-timeout',
     'requestTimeout'
   );
 
   initNumberInput(config,
-    'request-max-tries-input',
+    'request-max-tries',
     'requestMaxTries'
+  );
+
+  initRadioInput(config,
+    'request-referrer-policy',
+    'requestReferrerPolicy',
+  );
+
+  initNumberInput(config,
+    'request-cache-size',
+    'requestCacheSize'
+  );
+
+  initCheckboxInput(config,
+    'request-cache-css',
+    'requestCacheCss'
+  );
+
+  initCheckboxInput(config,
+    'request-cache-image',
+    'requestCacheImage'
+  );
+
+  initCheckboxInput(config,
+    'request-cache-web-font',
+    'requestCacheWebFont'
   );
 
   initCheckboxInput(config,
@@ -277,10 +302,6 @@ function initSettingAdvanced(config) {
     'communicateWithThirdParty'
   );
 
-  initRadioInput(config,
-    'request-referrer-policy',
-    'requestReferrerPolicy',
-  );
 
 }
 
@@ -838,7 +859,7 @@ function renderSubscriptions() {
         }).join('');
         T.setHtml(elem,  html);
       } else {
-        T.setHtml(elem, '<tr><td colspan="4" i18n="no.record" align="center"></td></tr>');
+        T.setHtml(elem, '<tr><td colspan="4" i18n="hint.no-record" align="center"></td></tr>');
       }
     });
 }
